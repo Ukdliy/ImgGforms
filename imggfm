@@ -1,0 +1,18 @@
+function replaceDriveWithDrove() {
+  // Buka spreadsheet aktif
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("images"); // Ganti dengan nama sheet Anda
+  var range = sheet.getDataRange(); // Ambil semua data di sheet
+  var values = range.getValues(); // Ambil nilai dalam bentuk array 2D
+  
+  // Iterasi melalui setiap baris dan kolom
+  for (var i = 0; i < values.length; i++) {
+    for (var j = 0; j < values[i].length; j++) {
+      if (typeof values[i][j] === "string") { // Periksa jika nilainya adalah string
+        values[i][j] = values[i][j].replace("open", "thumbnail"); // Ganti "open" dengan "thumbnail"
+      }
+    }
+  }
+  
+  // Tulis kembali data yang telah dimodifikasi ke spreadsheet
+  range.setValues(values);
+}
